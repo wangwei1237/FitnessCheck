@@ -1,0 +1,6 @@
+{
+  "name": "FitnessCheck",
+  "description": "FitnessCheck 是一款现代化、简约且功能完整的健身体能训练打卡与训练日记应用。支持力量训练记录、按肌肉部位挑选的动作库以及直观的月度日历打卡视图，助你追踪身体成长的每一步。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

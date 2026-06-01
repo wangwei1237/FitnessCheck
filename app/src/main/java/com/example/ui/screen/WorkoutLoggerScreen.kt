@@ -101,7 +101,16 @@ fun WorkoutLoggerScreen(
     LaunchedEffect(activeCountdownSeconds, isTimerPaused) {
         if (activeCountdownSeconds > 0 && !isTimerPaused) {
             delay(1000)
-            activeCountdownSeconds--
+            val nextVal = activeCountdownSeconds - 1
+            activeCountdownSeconds = nextVal
+            if (nextVal == 0) {
+                try {
+                    val toneG = android.media.ToneGenerator(android.media.AudioManager.STREAM_NOTIFICATION, 100)
+                    toneG.startTone(android.media.ToneGenerator.TONE_PROP_BEEP, 250)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 

@@ -16,7 +16,7 @@ import com.example.data.entity.WorkoutSet
  */
 @Database(
     entities = [Exercise::class, Workout::class, WorkoutSet::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class WorkoutDatabase : RoomDatabase() {

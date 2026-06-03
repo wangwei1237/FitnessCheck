@@ -43,7 +43,7 @@ class FitnessViewModel(private val repository: FitnessRepository) : ViewModel() 
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.Eagerly,
             initialValue = emptySet()
         )
 
@@ -64,7 +64,7 @@ class FitnessViewModel(private val repository: FitnessRepository) : ViewModel() 
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.Eagerly,
             initialValue = emptyMap()
         )
 

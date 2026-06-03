@@ -38,6 +38,8 @@ abstract class WorkoutDatabase : RoomDatabase() {
                     WorkoutDatabase::class.java,
                     "fitness_workout_database"
                 )
+                // 强制使用 TRUNCATE 模式，确保数据在冷启动前即时落盘，修复 TC-14
+                .setJournalMode(JournalMode.TRUNCATE)
                 // 在开发初期，若结构有轻微变更，可使用破坏性迁移
                 .fallbackToDestructiveMigration()
                 .build()

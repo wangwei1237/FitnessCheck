@@ -58,9 +58,14 @@ interface WorkoutDao {
 
     /**
      * 获取指定动作上一次做组的记录。
-     * 可以用于“快速复制上一组数据”或者做模板填充
+     * 关联 Workouts 表以确保按训练日期排序，而不仅仅是插入顺序
      */
-    @Query("SELECT * FROM workout_sets WHERE exerciseId = :exerciseId ORDER BY id DESC LIMIT 1")
+    @Query("""
+        SELECT ws.* FROM workout_sets ws 
+        JOIN workouts w ON ws.workoutId = w.id 
+        WHERE ws.exerciseId = :exerciseId 
+        ORDER BY w.date DESC, ws.id DESC LIMIT 1
+    """)
     suspend fun getLastSetForExercise(exerciseId: Long): WorkoutSet?
 
     /**

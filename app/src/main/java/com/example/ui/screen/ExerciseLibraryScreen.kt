@@ -171,15 +171,28 @@ fun ExerciseLibraryScreen(
             ) {
                 items(muscleGroups) { group ->
                     val isSelected = selectedMuscleGroup == group
-                    FilterChip(
+                    ElevatedFilterChip(
                         selected = isSelected,
-                        onClick = { viewModel.selectMuscleGroup(group) },
-                        label = { Text(group) },
-                        colors = FilterChipDefaults.filterChipColors(
+                        onClick = { 
+                            viewModel.selectMuscleGroup(group)
+                        },
+                        label = { 
+                            Text(
+                                text = group,
+                                style = MaterialTheme.typography.bodyMedium,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                            ) 
+                        },
+                        colors = FilterChipDefaults.elevatedFilterChipColors(
                             selectedContainerColor = MaterialTheme.colorScheme.primary,
-                            selectedLabelColor = MaterialTheme.colorScheme.onPrimary
+                            selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                            labelColor = MaterialTheme.colorScheme.onSurfaceVariant
                         ),
-                        modifier = Modifier.testTag("muscle_group_chip_$group")
+                        elevation = FilterChipDefaults.elevatedFilterChipElevation(elevation = 2.dp),
+                        modifier = Modifier
+                            .padding(end = 4.dp)
+                            .testTag("muscle_group_chip_$group")
                     )
                 }
             }
